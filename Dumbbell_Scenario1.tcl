@@ -39,26 +39,13 @@ set throughputSamplingInterval 0.01
 set enableNam 0
 set ns [new Simulator]
 
-# Agent/TCP set ecn_ 0
-# Agent/TCP set old_ecn_ 0
+
 Agent/TCP set packetSize_ $packetSize
 Agent/TCP set window_ 4000
-# Agent/TCP set slow_start_restart_ false
-# Agent/TCP set tcpTick_ 0.01
-# Agent/TCP set minrto_ 2
-# Agent/TCP set windowOption_ 0
+
 
 Queue set limit_ 2000
-# Queue/RED set bytes_ false
-# Queue/RED set queue_in_bytes false
-# Queue/RED set mean_pktsize_ $packetSize
-# Queue/RED set setbit_ true
-# Queue/RED set q_weight_ 1.0
-# Queue/RED set mark_p_ 1.0
-# Queue/RED set thresh_ [expr $routerBufferSize/2]
-# Queue/RED set maxthresh_ [expr $routerBufferSize/2]
-# Queue/RED set gentle_ false
-# Queue/RED set drop-tail_ true
+
 
 
 DelayLink set avoidReordering_ true
@@ -199,7 +186,7 @@ set m_nstates 2
 set m_nstart [lindex $m_states 0]
 set em [new ErrorModel/MultiState $m_states $m_periods $m_transmx $m_trunit $m_sttype $m_nstates $m_nstart]
 
-
+######Comment the following line if do not want to use Error Model####
 #$ns link-lossmodel $em $nqueue1 $nqueue2
 
 for {set i 0} {$i < $N} {incr i} {
